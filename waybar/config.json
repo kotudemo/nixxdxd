@@ -1,0 +1,114 @@
+{
+    "height": 40, // Waybar height (to be removed for auto height)
+    "layer": "top", // Waybar at top# layer
+    "modules-left": ["custom/launcher", "cpu", "memory", "custom/spotify" ],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [
+        "tray",
+        "custom/theme",
+        "custom/wallpaper",
+        "network",
+        "pulseaudio",
+        "clock",
+        "custom/power-menu"
+    ],
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "󰴒",
+            "5": "",
+            "6": "󰙯",
+            "7": "󰎈",
+            "urgent": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 7
+        }
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 60,
+        "align": 0,
+        "rotate": 0,
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%d %b, %I:%M %p}",
+        "format-alt": "{:%a %b %d, %G}"
+    },
+    //"bluetooth": {
+    //   "format": "",
+    //    "on-click": "blueberry"
+    },
+    "cpu": {
+        "interval": 10,
+        "format": "  {}%",
+        "max-length": 10,
+        "on-click": ""
+    },
+    "memory": {
+        "interval": 30,
+        "format": "   {}%",
+        "format-alt": " {used:0.1f}GB",
+        "max-length": 10
+    },
+    "network": {
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈁 ",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{essid}",
+        "on-click": "kitty nmtui",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "婢",
+        "format-icons": {
+            "default": ["", "", "󰕾"]
+        },
+        "on-click": "pavucontrol &",
+        "on-click-right": "pamixer -t",
+        "scroll-step": 5,
+        "on-scroll-up": "~/.config/waybar/scripts/volume.sh --inc",
+        "on-scroll-down": "~/.config/waybar/scripts/volume.sh --dec"
+    },
+
+    "custom/weather": {
+        "exec": "python3 ~/.config/waybar/scripts/weather.py",
+        "restart-interval": 300,
+        "return-type": "json"
+    },
+    "custom/spotify": {
+        "exec": "python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
+        "format": "  {}",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+    "custom/power-menu": {
+        "format": " ⏻ ",
+        "on-click": "~/.config/wofi/scripts/powermenu.sh"
+    },
+    "custom/launcher": {
+        "format": "󰊠",
+        "on-click": "~/.config/rofi/scripts/launcher"
+    },
+    "custom/wallpaper": {
+        "format": "",
+        "on-click": "~/.config/wofi/scripts/wallpaper.sh",
+    },
+    "custom/theme": {
+        "format": "",
+        "on-click": "~/.config/waybar/scripts/theme.sh"
+    }
+}
